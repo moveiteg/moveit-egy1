@@ -433,5 +433,58 @@ align-self: flex-start;
     align-items: flex-start; /* عشان يبقوا على الشمال */
   }
 }
+/*//////////////////////////////////////////////////////////////  */
+/* ==== معرض الصور (Photo Slider) ==== */
+
+.photo-slider {
+  display: none;
+  position: relative;
+  text-align: center;
+  margin: 40px auto;
+  max-width: 100%;
+}
+
+.photo-slider .slider img {
+  max-width: 100%;
+  width: 600px;
+  display: none;
+  border-radius: 10px;
+}
+
+.photo-slider .slider img.active {
+  display: block;
+}
+
+.photo-slider button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #2ecc71;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 22px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.photo-slider .prev {
+  left: 10px;
+}
+
+.photo-slider .next {
+  right: 10px;
+}
+
+.watch-photo-btn {
+  margin-right: 10px;
+  background-color: #2ecc71;
+  color: white;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+}
 
 
