@@ -82,3 +82,52 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+
+// ==== سلايدر الصور (Photo Slider) ====
+
+const photoGallery = document.getElementById("photo-gallery");
+const galleryImages = document.querySelectorAll(".gallery-image");
+const prevBtn = document.querySelector(".prev");
+const nextBtn = document.querySelector(".next");
+const watchPhotoBtns = document.querySelectorAll(".watch-photo-btn");
+
+let currentIndex = 0;
+let currentGroup = "food";
+
+function showImagesByGroup(group) {
+  currentGroup = group;
+  photoGallery.style.display = "block";
+
+  galleryImages.forEach((img) => {
+    img.classList.remove("active");
+    if (img.classList.contains(group)) {
+      img.style.display = "block";
+    } else {
+      img.style.display = "none";
+    }
+  });
+
+  const groupImages = Array.from(galleryImages).filter(img => img.classList.contains(group));
+  if (groupImages.length > 0) {
+    groupImages[0].classList.add("active");
+    currentIndex = 0;
+  }
+}
+
+watchPhotoBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const group = btn.dataset.gallery;
+    showImagesByGroup(group);
+  });
+});
+
+function changeSlide(step) {
+  const visibleImages = Array.from(galleryImages).filter(img => img.classList.contains(currentGroup));
+  visibleImages[currentIndex].classList.remove("active");
+  currentIndex = (currentIndex + step + visibleImages.length) % visibleImages.length;
+  visibleImages[currentIndex].classList.add("active");
+}
+
+prevBtn.addEventListener("click", () => changeSlide(-1));
+nextBtn.addEventListener("click", () => changeSlide(1));
